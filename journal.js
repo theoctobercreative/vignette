@@ -105,6 +105,8 @@
     calling:  ['Left a calling card at <b>{x}</b>’s. The tray was already filling up.', 'Stopped by <b>{x}</b>’s and left my card on the brass tray.'],
     card:     ['<b>{x}</b> left a calling card on the tray.', 'Found <b>{x}</b>’s calling card waiting for me.'],
     postcard: ['Kept a postcard from <b>{x}</b>.', 'Picked up a postcard at <b>{x}</b>. It’s going on the mirror.'],
+    photo:    ['Took an instant photo at <b>{x}</b> and watched it develop.', 'Snapped a photo at <b>{x}</b>. It came out softer than I expected, which I liked.', 'One more photo for the album: <b>{x}</b>.'],
+    paper:    ['Took out a sheet of {paper} letter paper{wax}.', 'Set a sheet of {paper} paper on the desk{wax}. Now, who to write to.'],
     event:    ['Signed the guestbook at <b>{x}</b>.', 'Went to <b>{x}</b> and signed my name in the book.'],
     dance:    ['Danced until my feet complained.', 'Took a turn on the dance floor. Then another.', 'Danced. That’s all, and it was enough.'],
     out:      ['Spent a while out with people in <b>{x}</b>. My cheeks hurt from smiling.', 'A lively stretch in <b>{x}</b>, surrounded by good company.'],
@@ -256,6 +258,7 @@
     if (code === 'find') fill.item = esc(item(x));
     if (code === 'complete') fill.series = esc((SERIES[+x] || {}).name || 'collection');
     if (code === 'errand') fill.x = esc(ERRANDS[+x] || '');
+    if (code === 'paper') { var pw = String(x).split('`'); fill.paper = esc(pw[0] || 'cream'); fill.wax = pw[1] ? ' and warmed the ' + esc(pw[1]) + ' wax' : ''; }
     if (code === 'giftin') { var gp = String(x).split('^'); fill.x = esc(gp[0]); fill.item = esc(item(gp[1])); }
     if (code === 'odile') {
       var cs = String(x).split('.');
@@ -433,6 +436,12 @@
     return out;
   };
 
+  // stationery letters arrive as "^paper`wax^words"
+  function letterStyle(p) {
+    var m = /^\^([a-z]*)`?([a-z]*)\^/.exec(String(p || ''));
+    return m ? { paper: m[1], wax: m[2], text: String(p).slice(m[0].length) } : { paper: '', wax: '', text: String(p || '') };
+  }
+
   PAGES.letters = function () {
     var out = '<h2 class="page">Letters</h2><div class="sub">sealed with your monogram</div>';
     out += '<div class="compose"><div class="label">Write a sealed letter</div><input class="field" id="to" maxlength="64" placeholder="Their username, like sweetpea.resident"><textarea class="field" id="body" maxlength="500" placeholder="Dear…"></textarea><div class="row" style="justify-content:space-between"><span class="muted small">They’ll find it in their journal, or as an IM if they don’t wear Vignette.</span><button class="btn" data-act="send">Seal and send</button></div></div>';
@@ -444,10 +453,11 @@
     else {
       out += '<div class="letters">';
       letters.forEach(function (m) {
-        var kind = m.type === 'page' ? 'A page from their journal' : (m.type === 'gift' ? 'A trouvaille' : 'Sealed letter');
-        var sealCls = m.type === 'gift' ? 'gift' : '';
-        var body = m.type === 'gift' ? thumbHtml(m.payload) + 'They sent you <b>' + esc(item(m.payload)) + '</b>. It’s already in your Keepsakes.' : esc(m.payload);
-        out += '<div class="letter ' + (m.read ? '' : 'unread') + '" data-act="open" data-id="' + m.id + '"><div class="seal ' + sealCls + '">' + esc((m.from || '?').charAt(0)) + '</div><div><div class="from">' + esc(m.from) + '</div><div class="kind">' + kind + '</div>'
+        var st = m.type === 'gift' ? { paper: '', wax: '', text: m.payload } : letterStyle(m.payload);
+        var kind = m.type === 'page' ? 'A page from their journal' : (m.type === 'gift' ? 'A trouvaille' : (st.paper ? 'On ' + st.paper + ' paper' + (st.wax ? ', ' + st.wax + ' wax' : '') : 'Sealed letter'));
+        var sealCls = m.type === 'gift' ? 'gift' : (st.wax ? 'wax-' + st.wax : '');
+        var body = m.type === 'gift' ? thumbHtml(m.payload) + 'They sent you <b>' + esc(item(m.payload)) + '</b>. It’s already in your Keepsakes.' : esc(st.text);
+        out += '<div class="letter ' + (m.read ? '' : 'unread') + (st.paper ? ' paper-' + st.paper : '') + '" data-act="open" data-id="' + m.id + '"><div class="seal ' + sealCls + '">' + esc((m.from || '?').charAt(0)) + '</div><div><div class="from">' + esc(m.from) + '</div><div class="kind">' + kind + '</div>'
           + (openLetter === m.id ? '<div class="body">' + body + '</div><div class="row" style="margin-top:10px"><button class="link" data-act="reply" data-name="' + esc(m.from) + '">Write back</button></div>' : '')
           + '</div><div class="date">' + esc(shortDate(m.unix)) + '</div></div>';
       });

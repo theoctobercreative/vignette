@@ -270,3 +270,14 @@ body.seance .cameo { background: #ADA5BC; }
 .tthumb { width: 46px; height: 46px; object-fit: contain; mix-blend-mode: multiply; float: left; margin: -6px 12px 0 0; }
 .letter .body .tthumb { width: 64px; height: 64px; }
 .entry .text::after { content: ''; display: block; clear: both; }
+
+/* ---------- refills: letter paper and sealing wax ---------- */
+.seal.wax-lilac { background: radial-gradient(circle at 35% 30%, #D8CCE0, #9C93AB); }
+.seal.wax-blush { background: radial-gradient(circle at 35% 30%, #F1DAD6, #C49A94); }
+.seal.wax-blue  { background: radial-gradient(circle at 35% 30%, #D3DDE8, #8C9FB5); }
+.seal.wax-brass { background: radial-gradient(circle at 35% 30%, #EBDDB8, #A8895A); }
+.seal.wax-ivory { background: radial-gradient(circle at 35% 30%, #FFFDF8, #D9CFBD); color: var(--laiton); }
+.letter.paper-lilac { background: #F5F1F9; }
+.letter.paper-blush { background: #FAF2F0; }
+.letter.paper-blue  { background: #F1F5F9; }
+.letter.paper-cream { background: #FBF8F1; }
