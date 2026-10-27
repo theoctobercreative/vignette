@@ -12,11 +12,11 @@
   // ============================================================
 
   var RITUALS = [
-    { name: 'Rested',   what: 'Bedside tray, dozing in bed, a quiet night in' },
+    { name: 'Rested',   what: 'The bedside tray, candlelight, dozing in bed, a quiet night in' },
     { name: 'Tidy',     what: 'Folding sweaters, the cleaning caddy, putting things back' },
-    { name: 'Pampered', what: 'The vanity tray, the apothecary shelf' },
-    { name: 'Inspired', what: 'Hobbies, tarot, wandering somewhere new' },
-    { name: 'Social',   what: 'Calling cards, letters, nights out, dancing' }
+    { name: 'Pampered', what: 'The vanity tray, perfume and powder, fresh flowers, the apothecary shelf' },
+    { name: 'Inspired', what: 'Hobbies, tarot, incense, a photo, wandering somewhere new' },
+    { name: 'Social',   what: 'Calling cards, sealed letters, nights out, dancing' }
   ];
 
   var HOBBIES = [
@@ -44,6 +44,24 @@
     { name: 'Seasonal Charms', when: 'Three per season', color: '#E6E2EC', seasonal: true, items: ['Blossom Brooch', 'Robin’s Egg', 'Garden Key', 'Seashell Locket', 'Sun Hat Pin', 'Lavender Fan', 'Candle Stub', 'Séance Bell', 'Harvest Moon', 'Snowflake Pin', 'Velvet Mitten', 'Silver Star'] },
     { name: 'Postage Stamps', when: 'From letters and travel', color: '#DCE1E7', items: ['Lilac Penny', 'Trianon Blue', 'Blush Rose', 'Cream Cameo', 'Swan Post', 'Garden Gate', 'Pearl Seal', 'Moonlit Airmail', 'Lavender Parcel', 'Royal Hatbox', 'Lyon Opera', 'Inverted Swan'] },
     { name: 'Dance Cards', when: 'Nights out and dance floors', color: '#F0E7E2', items: ['Waltz', 'Foxtrot', 'Quadrille', 'Minuet', 'Gavotte', 'Polka', 'Cotillion', 'Mazurka', 'Tango', 'Galop', 'Pavane', 'The Last Dance'] }
+  ];
+
+  // Every Vignette-ready piece, for the Shop tab and the little pictures on Rituals and Hobbies.
+  // k: piece, consumable, supply, finished, refill · r: rituals it lifts · h: hobby it grows · fit: what a refill tops up
+  var CATALOG = [{"n":"Apothecary Shelf A","k":"piece","p":129,"img":"apothecary-shelf-a","id":28851852,"r":"P,I","h":"","fit":"","line":"blend something lavender"},{"n":"Bedside Tray A","k":"piece","p":129,"img":"bedside-tray-a","id":28851853,"r":"R","h":"","fit":"","line":"turn in for the night"},{"n":"Candlemaking Tray A","k":"piece","p":129,"img":"candlemaking-tray-a","id":28851873,"r":"I","h":"candle","fit":"","line":"pour a candle"},{"n":"Candlemaking Tray B","k":"piece","p":129,"img":"candlemaking-tray-b","id":28851874,"r":"I","h":"candle","fit":"","line":"pour a candle"},{"n":"Cleaning Caddy","k":"piece","p":129,"img":"cleaning-caddy","id":28851875,"r":"T","h":"","fit":"","line":"tidy up"},{"n":"Knitting Basket","k":"piece","p":129,"img":"knitting-basket","id":28851892,"r":"I","h":"knit","fit":"","line":"knit a few rows"},{"n":"Sewing Basket A","k":"piece","p":129,"img":"sewing-basket-a","id":28851922,"r":"I","h":"sew","fit":"","line":"stitch a little"},{"n":"Sewing Basket B","k":"piece","p":129,"img":"sewing-basket-b","id":28851923,"r":"I","h":"sew","fit":"","line":"stitch a little"},{"n":"Vanity Tray A","k":"piece","p":129,"img":"vanity-tray-a","id":28851931,"r":"P","h":"","fit":"","line":"powder and perfume"},{"n":"Vanity Tray B","k":"piece","p":129,"img":"vanity-tray-b","id":28851935,"r":"P","h":"","fit":"","line":"powder and perfume"},{"n":"Vanity Tray C","k":"piece","p":129,"img":"vanity-tray-c","id":28851937,"r":"P","h":"","fit":"","line":"powder and perfume"},{"n":"Calling Card Tray","k":"piece","p":79,"img":"calling-card-tray","id":28851862,"r":"S","h":"","fit":"","line":"leave a calling card"},{"n":"Dance Card","k":"piece","p":79,"img":"dance-card","id":28851876,"r":"S","h":"","fit":"","line":"a turn on the dance floor"},{"n":"Flower Press Kit A","k":"piece","p":79,"img":"flower-press-kit-a","id":28851881,"r":"I","h":"press","fit":"","line":"press a flower"},{"n":"Flower Press Kit B","k":"piece","p":79,"img":"flower-press-kit-b","id":28851883,"r":"I","h":"press","fit":"","line":"press a flower"},{"n":"Flower Press Kit C","k":"piece","p":79,"img":"flower-press-kit-c","id":28851884,"r":"I","h":"press","fit":"","line":"press a flower"},{"n":"Flower Press Book","k":"piece","p":79,"img":"flower-press-kit-d-book","id":28851886,"r":"I","h":"press","fit":"","line":"press a flower"},{"n":"Journal and Pen","k":"piece","p":79,"img":"journal-and-pen-c","id":28851891,"r":"I,R","h":"journal","fit":"","line":"write a page"},{"n":"Letter Writing Set A","k":"piece","p":79,"img":"letter-writing-set-a","id":28851898,"r":"S","h":"letter","fit":"","line":"write a letter"},{"n":"Letter Writing Set B","k":"piece","p":79,"img":"letter-writing-set-b","id":28851899,"r":"S","h":"letter","fit":"","line":"write a letter"},{"n":"Porcelain Painting Set","k":"piece","p":79,"img":"porcelain-painting-set","id":28851908,"r":"I","h":"paint","fit":"","line":"paint a little porcelain"},{"n":"Sweater Stack","k":"piece","p":79,"img":"sweater-stack","id":28851926,"r":"T","h":"","fit":"","line":"fold the sweaters"},{"n":"Tarot Spread","k":"piece","p":79,"img":"tarot-spread","id":28851930,"r":"I","h":"tarot","fit":"","line":"draw a card"},{"n":"Autumn Perfume Bottle","k":"consumable","p":59,"img":"perfume-bottle-autumn","id":28851904,"r":"P","h":"","fit":"","line":"iris and old paper"},{"n":"Spring Perfume Bottle","k":"consumable","p":59,"img":"perfume-bottle-spring","id":28851905,"r":"P","h":"","fit":"","line":"lilac and spring rain"},{"n":"Summer Perfume Bottle","k":"consumable","p":59,"img":"perfume-bottle-summer","id":28851906,"r":"P","h":"","fit":"","line":"peony and warm linen"},{"n":"Winter Perfume Bottle","k":"consumable","p":59,"img":"perfume-bottle-winter","id":28851907,"r":"P","h":"","fit":"","line":"powder and cold air"},{"n":"Powder Jar","k":"consumable","p":59,"img":"powder-jar","id":28851910,"r":"P","h":"","fit":"","line":"a soft puff of powder"},{"n":"Lilac Bouquet","k":"consumable","p":59,"img":"lilac-bouquet","id":28851900,"r":"P,I","h":"","fit":"","line":"lilacs on the windowsill"},{"n":"Peony Bouquet","k":"consumable","p":59,"img":"peony-bouquet","id":28851902,"r":"P,I","h":"","fit":"","line":"heavy-headed peonies"},{"n":"Sweet Pea Bouquet","k":"consumable","p":59,"img":"sweet-pea-bouquet","id":28851927,"r":"P,I","h":"","fit":"","line":"ruffled and fussy"},{"n":"Taper Candle Holder","k":"consumable","p":59,"img":"taper-candle-holder","id":28851928,"r":"R,I","h":"","fit":"","line":"let the room go soft"},{"n":"Votive Holder","k":"consumable","p":59,"img":"votive-holder","id":28851939,"r":"R,P","h":"","fit":"","line":"a little starlight"},{"n":"Incense Burner","k":"consumable","p":59,"img":"incense-burner","id":28851887,"r":"I","h":"","fit":"","line":"ask Tante Odile"},{"n":"Stationery Box","k":"consumable","p":59,"img":"stationery-box","id":28851925,"r":"S","h":"letter","fit":"","line":"a fresh sheet of paper"},{"n":"Wax Seal Stamp","k":"consumable","p":59,"img":"wax-seal-stamp","id":28851940,"r":"S","h":"letter","fit":"","line":"seal it with a kiss"},{"n":"Instant Camera","k":"consumable","p":59,"img":"instant-camera","id":28851890,"r":"I","h":"","fit":"","line":"snap a photo"},{"n":"Blotting Paper Pack","k":"supply","p":59,"img":"blotting-paper-pack","id":28851855,"r":"I","h":"press","fit":"","line":"press some pansies"},{"n":"Candle Wax Blocks","k":"supply","p":59,"img":"candle-wax-blocks","id":28851870,"r":"I","h":"candle","fit":"","line":"chop the wax and melt"},{"n":"Embroidery Floss Tin","k":"supply","p":59,"img":"embroidery-floss-tin","id":28851877,"r":"I","h":"sew","fit":"","line":"thread the first color"},{"n":"Paint Pot Set","k":"supply","p":59,"img":"paint-pot-set","id":28851901,"r":"I","h":"paint","fit":"","line":"a little porcelain to paint"},{"n":"Yarn Skein Bundle","k":"supply","p":59,"img":"yarn-skein-bundle","id":28851851,"r":"I","h":"knit","fit":"","line":"cast on something soft"},{"n":"Embroidered Hoop","k":"finished","p":79,"img":"embroidery-hoop-finished","id":28851879,"r":"I","h":"sew","fit":"","line":"proud of that one"},{"n":"Pressed Flower Frame","k":"finished","p":79,"img":"pressed-flower-frame","id":28851911,"r":"P","h":"press","fit":"","line":"pansies caught in brass"},{"n":"Poured Candle Tin","k":"finished","p":79,"img":"poured-candle-tin","id":28851909,"r":"R","h":"candle","fit":"","line":"smooth as cream"},{"n":"Blue Letter Paper","k":"refill","p":39,"img":"letter-paper-blue","id":28851893,"r":"","h":"","fit":"Stationery Box","line":"twelve blue sheets"},{"n":"Blush Letter Paper","k":"refill","p":39,"img":"letter-paper-blush","id":28851894,"r":"","h":"","fit":"Stationery Box","line":"twelve blush sheets"},{"n":"Cream Letter Paper","k":"refill","p":39,"img":"letter-paper-cream","id":28851896,"r":"","h":"","fit":"Stationery Box","line":"twelve cream sheets"},{"n":"Lilac Letter Paper","k":"refill","p":39,"img":"letter-paper-lilac","id":28851897,"r":"","h":"","fit":"Stationery Box","line":"twelve lilac sheets"},{"n":"Blue Sealing Wax","k":"refill","p":39,"img":"sealing-wax-blue","id":28851912,"r":"","h":"","fit":"Wax Seal Stamp","line":"fifteen blue seals"},{"n":"Blush Sealing Wax","k":"refill","p":39,"img":"sealing-wax-blush","id":28851914,"r":"","h":"","fit":"Wax Seal Stamp","line":"fifteen blush seals"},{"n":"Brass Sealing Wax","k":"refill","p":39,"img":"sealing-wax-brass","id":28851918,"r":"","h":"","fit":"Wax Seal Stamp","line":"fifteen brass seals"},{"n":"Ivory Sealing Wax","k":"refill","p":39,"img":"sealing-wax-ivory","id":28851919,"r":"","h":"","fit":"Wax Seal Stamp","line":"fifteen ivory seals"},{"n":"Lilac Sealing Wax","k":"refill","p":39,"img":"sealing-wax-lilac","id":28851920,"r":"","h":"","fit":"Wax Seal Stamp","line":"fifteen lilac seals"},{"n":"Taper Candles","k":"refill","p":39,"img":"taper-candles","id":28851929,"r":"","h":"","fit":"Taper Candle Holder","line":"four fresh tapers"},{"n":"Votive Candles","k":"refill","p":39,"img":"votive-candles","id":28851938,"r":"","h":"","fit":"Votive Holder","line":"six little votives"},{"n":"Incense Cones","k":"refill","p":39,"img":"incense-cones","id":28851888,"r":"","h":"","fit":"Incense Burner","line":"ten cones for Odile"},{"n":"Instant Film","k":"refill","p":39,"img":"film-box","id":28851880,"r":"","h":"","fit":"Instant Camera","line":"ten fresh shots"}];
+  var KIND_NAMES = { piece: 'Pieces', consumable: 'Consumables', supply: 'Hobby supplies', finished: 'Finished pieces', refill: 'Refills' };
+  var SHOP_SLURL = 'London Square';
+
+  // Keepsakes Tante Odile mentions in her letters: [chapter, letter, name, note, picture or icon]
+  var ODILE_KEEPS = [
+    [0, 2, 'Lilac Rosette Button', 'From the coat of a man who swore he could speak to the dead.', 'img:0.0'],
+    [0, 5, 'Small Brass Key', 'Inside the keepsake box. It opens something, after midnight.', 'key'],
+    [1, 4, 'A Little Moth', 'The messenger you found for her.', 'img:2.0'],
+    [1, 5, 'Heart-Shaped Pointer', 'From the planchette box. It still sticks on the letter O.', 'heart'],
+    [2, 2, 'Linen Water', 'Maman’s first card: lavender, rainwater, pillowcases.', 'card'],
+    [2, 3, 'For Dark Evenings', 'Her candle card. Pour slowly, think of someone.', 'card'],
+    [2, 4, 'Pressed Flower Sachets', 'Violets, a heavy book, and patience.', 'card'],
+    [2, 5, 'The Blank Card', 'Odile’s own, at the back of the box. Yours to fill.', 'card']
   ];
 
   var TAROT = [
@@ -225,6 +243,15 @@
     return (V.base || '.') + '/trouvailles/' + (+p[0]) + '-' + (+p[1]) + '.jpg';
   }
   function thumbHtml(sp, cls) { return '<img class="' + (cls || 'tthumb') + '" src="' + esc(pic(sp)) + '" alt="" loading="lazy">'; }
+  function pieceImg(c) { return (V.base || 'https://theoctobercreative.github.io/vignette') + '/pieces/' + c.img + '.jpg'; }
+  function pieceStrip(list, max) {
+    if (!list.length) return '';
+    var seen = {}, out = '<div class="strip">';
+    list.filter(function (c) { if (seen[c.n]) return false; seen[c.n] = 1; return true; }).slice(0, max || 6).forEach(function (c) {
+      out += '<button class="pthumb" data-act="shopview" data-id="' + c.id + '" data-name="' + esc(c.n) + '" title="' + esc(c.n) + '"><img src="' + esc(pieceImg(c)) + '" alt="" loading="lazy"><span>' + esc(c.n) + '</span></button>';
+    });
+    return out + '</div>';
+  }
   function item(sp) {
     var p = String(sp).split('.'), s = SERIES[+p[0]];
     return s ? (s.items[+p[1]] || 'a little something') : 'a little something';
@@ -333,7 +360,8 @@
     letters: 'Letters and calling cards from friends, plus a place to write your own.',
     stamps: 'Places you’ve wandered, postcards, events, and your Maison Score.',
     wishlist: 'Shop pieces you pinned by touching a display.',
-    histoires: 'Tante Odile’s story, a letter at a time. New letters unlock as you play.'
+    histoires: 'Tante Odile’s story, a letter at a time. New letters unlock as you play.',
+    shop: 'Every Vignette-ready piece, refill, and hobby supply. Tap one to open it on the Marketplace.'
   };
   var guideShown = false;
 
@@ -345,14 +373,15 @@
       ['Touch your things', 'Pieces marked Vignette-ready write a little moment into your Diary when you touch them, and lift a Ritual or a Hobby.'],
       ['Read the Morning Post', 'Each day brings the weather, a card, and one small errand. Finish the errand for a little something extra.'],
       ['Wander and collect', 'New places become Stamps. Small finds called trouvailles turn up in Keepsakes along the way.'],
-      ['Write back', 'Add your own line to any day, send a letter from the Letters page, or leave a calling card when you visit.']
+      ['Write back', 'Add your own line to any day, send a letter from the Letters page, or leave a calling card when you visit.'],
+      ['Keep things stocked', 'Perfume, candles, flowers and other consumables run out over time. Refills and new pieces are in the Shop tab.']
     ];
     var html = '<div class="modal guide"><div class="g-eyebrow">Start here</div><h3>How your journal works</h3><div class="g-steps">';
     steps.forEach(function (st, i) {
       html += '<div class="g-step"><span class="g-num">' + (i + 1) + '</span><div><b>' + st[0] + '</b><p>' + st[1] + '</p></div></div>';
     });
     html += '</div><div class="g-eyebrow">Where things live</div><div class="g-map">';
-    [['diary', 'Diary'], ['rituals', 'Rituals'], ['hobbies', 'Hobbies'], ['keepsakes', 'Keepsakes'], ['letters', 'Letters'], ['stamps', 'Stamps'], ['wishlist', 'Wishlist'], ['histoires', 'Histoires']].forEach(function (t) {
+    [['diary', 'Diary'], ['rituals', 'Rituals'], ['hobbies', 'Hobbies'], ['keepsakes', 'Keepsakes'], ['letters', 'Letters'], ['stamps', 'Stamps'], ['wishlist', 'Wishlist'], ['histoires', 'Histoires'], ['shop', 'Shop']].forEach(function (t) {
       html += '<button class="g-tab" data-goto="' + t[0] + '"><b>' + t[1] + '</b><span>' + TAB_HINTS[t[0]] + '</span></button>';
     });
     html += '</div><p class="g-note">Click the cameo on your screen to open or close this journal. In chat, /8 status shows your rituals, /8 note adds a line to today, and /8 letter name message sends a letter.</p>'
@@ -380,7 +409,7 @@
     document.body.className = season;
     var glowing = core && core.r && core.r.every(function (v) { return v >= 7000; });
     var first = String(V.name || 'My').split(' ')[0];
-    var tabs = [['diary', 'Diary'], ['rituals', 'Rituals'], ['hobbies', 'Hobbies'], ['keepsakes', 'Keepsakes'], ['letters', 'Letters'], ['stamps', 'Stamps'], ['wishlist', 'Wishlist'], ['histoires', 'Histoires']];
+    var tabs = [['diary', 'Diary'], ['rituals', 'Rituals'], ['hobbies', 'Hobbies'], ['keepsakes', 'Keepsakes'], ['letters', 'Letters'], ['stamps', 'Stamps'], ['wishlist', 'Wishlist'], ['histoires', 'Histoires'], ['shop', 'Shop']];
     var unread = unreadCount();
     var html = '<div class="book"><header class="top"><div class="cameo">V</div><div class="titles"><div class="eyebrow">Vignette · by Thryft</div><h1>' + esc(first) + '’s journal<em>a life in little scenes</em></h1></div>' + (glowing ? '<div class="glow">Glowing</div>' : '') + '<button class="how" data-act="guide">How it works</button></header><nav class="tabs">';
     tabs.forEach(function (t) {
@@ -440,7 +469,10 @@
     var out = '<h2 class="page">Rituals</h2><div class="sub">little ways of looking after yourself</div><div class="rituals">';
     RITUALS.forEach(function (rt, i) {
       var v = Math.round(r[i] / 100);
-      out += '<div class="ritual"><div class="name">' + rt.name + '</div><div>' + pearls(v / 10, 10) + '</div><div><span class="mood">' + mood(v) + '</span><div class="what">' + esc(rt.what) + '</div></div></div>';
+      var code = 'RTPIS'.charAt(i);
+      var lifts = CATALOG.filter(function (c) { return c.r.indexOf(code) !== -1 && c.k !== 'supply'; });
+      out += '<div class="ritual"><div class="name">' + rt.name + '</div><div>' + pearls(v / 10, 10) + '</div><div><span class="mood">' + mood(v) + '</span><div class="what">' + esc(rt.what) + '</div></div>'
+        + '<div class="ritual-pieces">' + pieceStrip(lifts, 6) + '</div></div>';
     });
     out += '</div>';
     var glowing = r.every(function (v) { return v >= 7000; });
@@ -448,7 +480,8 @@
       + '<div class="perk ' + (glowing ? 'on' : '') + '"><h4>Glowing</h4><p>All five rituals Blooming at once. Twice the chance of a trouvaille.</p></div>'
       + '<div class="perk ' + (r[0] >= 7000 ? 'on' : '') + '"><h4>Well-Rested Morning</h4><p>Rested Blooming at the Morning Post draws you a second card.</p></div>'
       + '<div class="perk ' + (r[4] >= 7000 ? 'on' : '') + '"><h4>Social Butterfly</h4><p>Social Blooming makes the calling cards you leave count double.</p></div>'
-      + '</div><p class="muted small" style="margin-top:18px">Rituals drift slowly while you’re online and never while you’re away. Nothing bad happens when they’re low; the journal just notices.</p>';
+      + '</div><p class="muted small" style="margin-top:18px">Rituals drift slowly while you’re online and never while you’re away. Nothing bad happens when they’re low; the journal just notices.</p>'
+      + '<div class="note-card"><div><h4>Some pieces run out</h4><p>Perfume, powder, candles, incense, film, letter paper, wax, and fresh flowers are consumables. Hover over one to see what’s left, and a matching refill tops it back up. Spent pieces stay behind as decor.</p></div><button class="btn ghost" data-go="shop">See refills</button></div>';
     return out;
   };
 
@@ -458,8 +491,12 @@
     HOBBIES.forEach(function (hb, i) {
       var xp = h[i] || 0, t = tierFor(xp), next = TIERS[t + 1];
       var progress = next ? (xp - TIERS[t].xp) / (next.xp - TIERS[t].xp) * 5 : 5;
+      var kit = CATALOG.filter(function (c) { return c.h === hb.code && c.k !== 'finished'; });
+      var sup = CATALOG.filter(function (c) { return c.h === hb.code && c.k === 'supply'; })[0];
+      var fin = CATALOG.filter(function (c) { return c.h === hb.code && c.k === 'finished'; })[0];
       out += '<div class="hobby"><h4>' + hb.name + '</h4><div class="title">' + TIERS[t].title + '</div>' + pearls(progress, 5)
-        + '<div class="xp">' + (next ? (next.xp - xp) + ' to ' + next.title : 'Mastered') + '</div></div>';
+        + '<div class="xp">' + (next ? (next.xp - xp) + ' to ' + next.title : 'Mastered') + '</div>' + pieceStrip(kit, 4)
+        + (sup ? '<div class="muted small hobby-sup">' + esc(sup.n) + ': five sessions' + (fin ? ', then a ' + esc(fin.n) + ' of your own' : ', then a finished piece of your own') + '.</div>' : '') + '</div>';
     });
     out += '</div><p class="muted small" style="margin-top:18px">Every hobby piece you use adds to its craft. Writing your own lines grows Journaling, and sending letters grows Letter Writing.</p>';
     return out;
@@ -481,9 +518,20 @@
     });
     out += '<p class="muted small" style="margin-top:16px">Tap a × badge to send a spare to a friend. Trade by gifting each other.</p>';
     if (core && core.ch) {
+      var keeps = ODILE_KEEPS.filter(function (k) { return core.ch[0] > k[0] || (core.ch[0] === k[0] && core.ch[1] >= k[1]); });
+      out += '<h3 class="section">From Tante Odile</h3>';
+      if (!keeps.length) out += '<p class="empty">Little things she mentions in her letters will be kept here.</p>';
+      else {
+        out += '<div class="odile-keeps">';
+        keeps.forEach(function (k) {
+          var pic = k[4].indexOf('img:') === 0 ? thumbHtml(k[4].slice(4), 'kimg') : '<span class="kicon k-' + k[4] + '"></span>';
+          out += '<div class="okeep"><div class="kpic">' + pic + '</div><div><h4>' + esc(k[2]) + '</h4><p class="muted small">' + esc(k[3]) + '</p><div class="kfrom">Chapter ' + (k[0] + 1) + ', letter ' + k[1] + '</div></div></div>';
+        });
+        out += '</div>';
+      }
       var gifts = [];
       for (var c = 0; c < 3; c++) if (core.ch[0] > c || (core.ch[0] === c && core.ch[1] >= 5)) gifts.push(LETTERS[c].gift);
-      if (gifts.length) out += '<h3 class="section">From Tante Odile</h3><p>' + gifts.map(esc).join(' · ') + '</p>';
+      if (gifts.length) out += '<p class="muted small" style="margin-top:10px">Sent to your inventory: ' + gifts.map(esc).join(' · ') + '.</p>';
     }
     return out;
   };
@@ -496,6 +544,8 @@
 
   PAGES.letters = function () {
     var out = '<h2 class="page">Letters</h2><div class="sub">sealed with your monogram</div>';
+    var oc = core && core.ch ? core.ch[0] * 5 + core.ch[1] : 0;
+    out += '<div class="note-card odile-link"><span class="seal">O</span><div><h4>Letters from Tante Odile</h4><p>Her letters are kept together in Histoires, so the story reads in order.' + (oc ? ' You have ' + oc + (oc === 1 ? ' letter' : ' letters') + ' from her.' : '') + '</p></div><button class="btn ghost" data-go="histoires">Read them</button></div>';
     out += '<div class="compose"><div class="label">Write a sealed letter</div><input class="field" id="to" maxlength="64" placeholder="Their username, like sweetpea.resident"><textarea class="field" id="body" maxlength="500" placeholder="Dear…"></textarea><div class="row" style="justify-content:space-between"><span class="muted small">They’ll find it in their journal, or as an IM if they don’t wear Vignette.</span><button class="btn" data-act="send">Seal and send</button></div></div>';
     var items = mail.map(function (s) { var p = String(s).split('~'); return { id: +p[0], unix: +p[1], type: p[2], from: p[3], fromKey: p[4], payload: p[5], read: p[6] === '1' }; });
     var letters = items.filter(function (m) { return m.type !== 'card'; });
@@ -568,7 +618,7 @@
     var chap = core && core.ch ? core.ch[0] : 0, step = core && core.ch ? core.ch[1] : 0;
     LETTERS.forEach(function (ch, ci) {
       if (ci > chap) {
-        out += '<div class="chapter"><div class="chapter-head"><span class="num">CHAPTER ' + (ci + 1) + '</span><h4 class="muted">' + esc(ch.title) + '</h4></div><div class="sealed"><span class="seal">O</span>Opens a day after the chapter before it ends.</div></div>';
+        out += '<div class="chapter"><div class="chapter-head"><span class="num">CHAPTER ' + (ci + 1) + '</span><h4 class="muted">' + esc(ch.title) + '</h4></div><div class="sealed"><span class="seal">O</span>Opens three days after the chapter before it ends.</div></div>';
         return;
       }
       var have = ci < chap ? 5 : step;
@@ -579,11 +629,38 @@
           + L.body.map(function (p) { return '<p>' + esc(p) + '</p>'; }).join('')
           + '<div class="sign">' + esc(L.sign) + '</div>' + (L.ps ? '<p class="muted small"><i>' + esc(L.ps) + '</i></p>' : '') + '</div>';
       }
-      if (have < 5) out += '<div class="sealed"><span class="seal">O</span>' + esc(ch.hints[have]) + ', and at least a day after the last letter.</div>';
+      if (have < 5) out += '<div class="sealed"><span class="seal">O</span>' + esc(ch.hints[have]) + ', and at least three days after the last letter.</div>';
       else if (ci === chap) out += '<p class="muted small" style="margin-top:10px">Chapter complete. ' + esc(ch.gift) + ' was sent to your inventory.</p>';
       out += '</div>';
     });
     return out;
+  };
+
+  var shopKind = 'piece';
+  PAGES.shop = function () {
+    var out = '<h2 class="page">Shop</h2><div class="sub">little things to bring home</div>';
+    out += '<div class="note-card"><div><h4>Thryft · London Square</h4><p>Everything here is at the shop in-world, and on the Marketplace. Tap a piece to open its page.</p></div><button class="btn ghost" data-act="visit">Visit the shop</button></div>';
+    out += '<div class="kinds">';
+    ['piece', 'consumable', 'refill', 'supply', 'finished'].forEach(function (k) {
+      out += '<button class="kind ' + (shopKind === k ? 'on' : '') + '" data-act="shopkind" data-id="' + k + '">' + KIND_NAMES[k] + '</button>';
+    });
+    out += '</div><p class="muted small kind-note">' + ({
+      piece: 'Touch them for moments, rituals, and hobbies. Copy, so you can set them all over the house.',
+      consumable: 'They run out over time, honestly, and stay behind as decor. Each has a matching refill.',
+      refill: 'Rez a refill near the piece it fits and touch it. No copy, so the count stays honest.',
+      supply: 'Five hobby sessions each. Then a finished piece arrives in your inventory.',
+      finished: 'The pieces hobby supplies turn into, if you’d like one straight away.'
+    })[shopKind] + '</p><div class="shop">';
+    CATALOG.filter(function (c) { return c.k === shopKind; }).forEach(function (c) {
+      var tags = [];
+      c.r.split(',').filter(Boolean).forEach(function (x) { tags.push(RITUALS['RTPIS'.indexOf(x)].name); });
+      if (c.h) HOBBIES.forEach(function (hb) { if (hb.code === c.h) tags.push(hb.name); });
+      out += '<button class="item" data-act="shopview" data-id="' + c.id + '" data-name="' + esc(c.n) + '"><img src="' + esc(pieceImg(c)) + '" alt="" loading="lazy"><div class="iname">' + esc(c.n) + '</div>'
+        + '<div class="iline">' + esc(c.line) + '</div>'
+        + (c.fit ? '<div class="itag">Tops up the ' + esc(c.fit) + '</div>' : (tags.length ? '<div class="itag">' + esc(tags.join(' · ')) + '</div>' : ''))
+        + '<div class="iprice">L$' + c.p + '</div></button>';
+    });
+    return out + '</div>';
   };
 
   // ============================================================
@@ -647,6 +724,9 @@
     }
     else if (a === 'maison') { post('core', 'maison').then(function () { toast('Counting your pieces…'); setTimeout(load, 6000); }); }
     else if (a === 'guide') { showGuide(); }
+    else if (a === 'shopkind') { shopKind = el.getAttribute('data-id'); render(); }
+    else if (a === 'shopview') { post('core', 'shop|' + el.getAttribute('data-id') + '|' + bar(el.getAttribute('data-name') || '')).then(function () { toast('Check your viewer: a window will offer to open it.'); }); }
+    else if (a === 'visit') { post('core', 'visit').then(function () { toast('Your map is open at the Thryft shop.'); }); }
     else if (a === 'wishdel') { post('diary', 'wishdel|' + id).then(function () { setTimeout(load, 300); }); }
   }
 

@@ -314,3 +314,53 @@ body.seance .cameo { background: #ADA5BC; }
 .g-tab span { display: block; font-size: 13.5px; color: var(--encre-soft); line-height: 1.4; margin-top: 2px; }
 .g-tab:hover b { color: var(--laiton); }
 .g-note { font-size: 13.5px; color: var(--encre-soft); font-style: italic; border-top: 1px solid var(--pierre); padding-top: 10px; }
+
+/* ---------- pictures of pieces ---------- */
+.strip { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+.pthumb { background: var(--perle); border: 1px solid var(--pierre); border-radius: 8px; padding: 4px 4px 5px; width: 74px; cursor: pointer; text-align: center; }
+.pthumb:hover { border-color: var(--laiton-soft); }
+.pthumb img { width: 64px; height: 64px; object-fit: cover; border-radius: 5px; display: block; margin: 0 auto 3px; }
+.pthumb span { display: block; font-family: var(--sans); font-size: 9px; letter-spacing: .06em; color: var(--encre-soft); line-height: 1.2; height: 22px; overflow: hidden; }
+
+.ritual-pieces { grid-column: 3; }
+.ritual-pieces .strip { margin-top: 6px; }
+.hobby .strip { margin-top: 12px; }
+.hobby .pthumb { width: 58px; }
+.hobby .pthumb img { width: 48px; height: 48px; }
+.hobby .pthumb span { display: none; }
+.hobby-sup { margin-top: 8px; line-height: 1.4; }
+
+/* ---------- note cards ---------- */
+.note-card { display: flex; align-items: center; gap: 18px; background: linear-gradient(90deg, var(--poudre), var(--perle)); border: 1px solid var(--laiton-soft); padding: 16px 20px; margin: 22px 0 6px; }
+.note-card h4 { font-family: var(--serif); font-weight: 400; font-size: 19px; margin-bottom: 4px; }
+.note-card p { font-size: 14.5px; color: var(--encre-soft); line-height: 1.45; }
+.note-card > div { flex: 1; }
+.note-card .btn { white-space: nowrap; }
+.odile-link { margin-top: 0; margin-bottom: 22px; }
+.odile-link .seal { flex: none; width: 40px; height: 40px; border-radius: 50%; background: var(--lavande); color: var(--perle); display: grid; place-items: center; font-family: var(--serif); font-size: 20px; }
+
+/* ---------- Odile's keepsakes ---------- */
+.odile-keeps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.okeep { display: flex; gap: 14px; align-items: center; background: var(--perle); border: 1px solid var(--pierre); padding: 12px; }
+.okeep h4 { font-family: var(--serif); font-weight: 400; font-size: 17px; }
+.kpic { flex: none; width: 70px; height: 70px; border-radius: 50%; background: var(--poudre); border: 1.5px solid var(--laiton-soft); display: grid; place-items: center; overflow: hidden; }
+.kimg { width: 100%; height: 100%; object-fit: cover; }
+.kfrom { font-family: var(--sans); font-size: 9.5px; letter-spacing: .2em; text-transform: uppercase; color: var(--laiton); margin-top: 6px; }
+.kicon { width: 40px; height: 40px; background: center / contain no-repeat; }
+.k-key { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='12' cy='20' r='7' fill='none' stroke='%23A88B5C' stroke-width='3'/%3E%3Cpath d='M19 20h17M30 20v6M35 20v5' stroke='%23A88B5C' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); }
+.k-heart { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M20 34C8 25 4 19 4 13a8 8 0 0 1 16-2 8 8 0 0 1 16 2c0 6-4 12-16 21z' fill='%23C3BFCA' stroke='%23A88B5C' stroke-width='2'/%3E%3Ccircle cx='20' cy='17' r='3' fill='%23F5F3EF' stroke='%23A88B5C' stroke-width='1.5'/%3E%3C/svg%3E"); }
+.k-card { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect x='5' y='9' width='30' height='22' rx='1.5' fill='%23F5F3EF' stroke='%23A88B5C' stroke-width='2'/%3E%3Cpath d='M10 16h20M10 21h16M10 26h12' stroke='%23C3BFCA' stroke-width='1.6'/%3E%3C/svg%3E"); }
+
+/* ---------- shop ---------- */
+.kinds { display: flex; gap: 8px; flex-wrap: wrap; margin: 22px 0 8px; }
+.kind { font-family: var(--sans); font-size: 10.5px; letter-spacing: .2em; text-transform: uppercase; color: var(--encre-soft); background: var(--perle); border: 1px solid var(--pierre); border-radius: 40px; padding: 7px 14px; cursor: pointer; }
+.kind.on { color: var(--encre); border-color: var(--laiton-soft); background: var(--poudre); }
+.kind-note { margin-bottom: 14px; }
+.shop { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.shop .item { background: var(--perle); border: 1px solid var(--pierre); padding: 10px 10px 12px; text-align: left; cursor: pointer; font-family: var(--serif); color: var(--encre); }
+.shop .item:hover { border-color: var(--laiton-soft); }
+.shop .item img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; margin-bottom: 8px; }
+.iname { font-size: 15.5px; line-height: 1.2; }
+.iline { font-family: var(--script); color: var(--laiton); font-size: 17px; line-height: 1.15; margin: 3px 0; }
+.itag { font-family: var(--sans); font-size: 9.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--encre-soft); line-height: 1.4; }
+.iprice { font-family: var(--sans); font-size: 11px; letter-spacing: .12em; color: var(--laiton); margin-top: 6px; }
