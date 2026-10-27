@@ -281,3 +281,36 @@ body.seance .cameo { background: #ADA5BC; }
 .letter.paper-blush { background: #FAF2F0; }
 .letter.paper-blue  { background: #F1F5F9; }
 .letter.paper-cream { background: #FBF8F1; }
+
+/* ---------- finding your way ---------- */
+.how {
+  margin-left: auto; flex: none; cursor: pointer;
+  font-family: var(--sans); font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--encre); background: var(--perle); border: 1px solid var(--laiton-soft);
+  padding: 7px 14px; border-radius: 40px;
+}
+.how::before { content: '?'; display: inline-grid; place-items: center; width: 16px; height: 16px; margin-right: 8px;
+  border-radius: 50%; background: var(--laiton-soft); color: var(--perle); font-size: 10px; letter-spacing: 0; }
+.how:hover { background: var(--poudre); }
+.glow + .how { margin-left: 10px; }
+.hint {
+  padding: 9px 40px; font-family: var(--serif); font-style: italic; font-size: 14px; color: var(--encre-soft);
+  background: linear-gradient(90deg, rgba(239, 227, 224, 0.55), rgba(245, 243, 239, 0));
+  border-bottom: 1px solid var(--pierre); position: relative; z-index: 1;
+}
+.modal.guide { width: 760px; max-height: 90%; overflow-y: auto; gap: 14px; padding: 30px 34px; }
+.guide h3 { font-weight: 400; font-size: 28px; margin-top: -4px; }
+.g-eyebrow { font-family: var(--sans); font-size: 10.5px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--laiton); }
+.g-steps { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 22px; margin-bottom: 6px; }
+.g-step { display: flex; gap: 12px; align-items: flex-start; }
+.g-step b { font-weight: 500; font-size: 17px; }
+.g-step p { font-size: 14.5px; line-height: 1.45; color: var(--encre-soft); margin-top: 2px; }
+.g-num { flex: none; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center;
+  border: 1px solid var(--laiton-soft); color: var(--laiton); font-family: var(--serif); font-size: 15px; background: var(--poudre); }
+.g-map { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 18px; }
+.g-tab { text-align: left; background: none; border: 0; border-bottom: 1px dotted var(--pierre); padding: 7px 2px; cursor: pointer;
+  font-family: var(--serif); color: var(--encre); }
+.g-tab b { display: block; font-family: var(--sans); font-weight: 500; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; }
+.g-tab span { display: block; font-size: 13.5px; color: var(--encre-soft); line-height: 1.4; margin-top: 2px; }
+.g-tab:hover b { color: var(--laiton); }
+.g-note { font-size: 13.5px; color: var(--encre-soft); font-style: italic; border-top: 1px solid var(--pierre); padding-top: 10px; }

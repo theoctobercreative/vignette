@@ -191,6 +191,7 @@
     return Promise.all([get('core'), get('diary'), get('diary', '&w=1'), get('mail')]).then(function (res) {
       core = res[0]; diary = { e: res[1] || [], w: res[2] || [] }; mail = res[3] || [];
       render();
+      maybeGuide();
     }).catch(function () {
       app.innerHTML = '<p class="opening">The pages are stuck together. Close and reopen your journal.</p>';
     });
@@ -323,6 +324,57 @@
 
   function unreadCount() { return mail.filter(function (s) { var p = String(s).split('~'); return p[2] !== 'card' && p.pop() === '0'; }).length; }
 
+  // ---------- finding your way ----------
+  var TAB_HINTS = {
+    diary: 'Everything you do lands here, newest first. Today’s Morning Post sits at the top.',
+    rituals: 'Five little needs. Touching Vignette pieces fills them, and nothing bad happens when they’re low.',
+    hobbies: 'Each hobby grows a little every time you practice it.',
+    keepsakes: 'Trouvailles: tiny finds that turn up as you go. Spares can be gifted to friends.',
+    letters: 'Letters and calling cards from friends, plus a place to write your own.',
+    stamps: 'Places you’ve wandered, postcards, events, and your Maison Score.',
+    wishlist: 'Shop pieces you pinned by touching a display.',
+    histoires: 'Tante Odile’s story, a letter at a time. New letters unlock as you play.'
+  };
+  var guideShown = false;
+
+  function showGuide() {
+    guideShown = true;
+    try { localStorage.setItem('vg-guide', '1'); } catch (e) {}
+    var veil = document.createElement('div'); veil.className = 'veil';
+    var steps = [
+      ['Touch your things', 'Pieces marked Vignette-ready write a little moment into your Diary when you touch them, and lift a Ritual or a Hobby.'],
+      ['Read the Morning Post', 'Each day brings the weather, a card, and one small errand. Finish the errand for a little something extra.'],
+      ['Wander and collect', 'New places become Stamps. Small finds called trouvailles turn up in Keepsakes along the way.'],
+      ['Write back', 'Add your own line to any day, send a letter from the Letters page, or leave a calling card when you visit.']
+    ];
+    var html = '<div class="modal guide"><div class="g-eyebrow">Start here</div><h3>How your journal works</h3><div class="g-steps">';
+    steps.forEach(function (st, i) {
+      html += '<div class="g-step"><span class="g-num">' + (i + 1) + '</span><div><b>' + st[0] + '</b><p>' + st[1] + '</p></div></div>';
+    });
+    html += '</div><div class="g-eyebrow">Where things live</div><div class="g-map">';
+    [['diary', 'Diary'], ['rituals', 'Rituals'], ['hobbies', 'Hobbies'], ['keepsakes', 'Keepsakes'], ['letters', 'Letters'], ['stamps', 'Stamps'], ['wishlist', 'Wishlist'], ['histoires', 'Histoires']].forEach(function (t) {
+      html += '<button class="g-tab" data-goto="' + t[0] + '"><b>' + t[1] + '</b><span>' + TAB_HINTS[t[0]] + '</span></button>';
+    });
+    html += '</div><p class="g-note">Click the cameo on your screen to open or close this journal. In chat, /8 status shows your rituals, /8 note adds a line to today, and /8 letter name message sends a letter.</p>'
+      + '<div class="row" style="justify-content:flex-end"><button class="btn" data-x>Begin</button></div></div>';
+    veil.innerHTML = html;
+    document.querySelector('.book').appendChild(veil);
+    veil.querySelector('[data-x]').onclick = function () { veil.remove(); };
+    veil.onclick = function (ev) { if (ev.target === veil) veil.remove(); };
+    veil.querySelectorAll('[data-goto]').forEach(function (b) {
+      b.onclick = function () { tab = b.getAttribute('data-goto'); veil.remove(); render(); };
+    });
+  }
+
+  function maybeGuide() {
+    if (guideShown) return;
+    var seen = false;
+    try { seen = localStorage.getItem('vg-guide') === '1'; } catch (e) {}
+    var fresh = parseEntries().filter(function (e) { return e.code !== 'morning'; }).length < 4;
+    if (fresh && !seen) showGuide();
+    guideShown = true;
+  }
+
   function render() {
     var season = seasonNow();
     document.body.className = season;
@@ -330,11 +382,11 @@
     var first = String(V.name || 'My').split(' ')[0];
     var tabs = [['diary', 'Diary'], ['rituals', 'Rituals'], ['hobbies', 'Hobbies'], ['keepsakes', 'Keepsakes'], ['letters', 'Letters'], ['stamps', 'Stamps'], ['wishlist', 'Wishlist'], ['histoires', 'Histoires']];
     var unread = unreadCount();
-    var html = '<div class="book"><header class="top"><div class="cameo">V</div><div class="titles"><div class="eyebrow">Vignette · by Thryft</div><h1>' + esc(first) + '’s journal<em>a life in little scenes</em></h1></div>' + (glowing ? '<div class="glow">Glowing</div>' : '') + '</header><nav class="tabs">';
+    var html = '<div class="book"><header class="top"><div class="cameo">V</div><div class="titles"><div class="eyebrow">Vignette · by Thryft</div><h1>' + esc(first) + '’s journal<em>a life in little scenes</em></h1></div>' + (glowing ? '<div class="glow">Glowing</div>' : '') + '<button class="how" data-act="guide">How it works</button></header><nav class="tabs">';
     tabs.forEach(function (t) {
       html += '<button data-tab="' + t[0] + '" class="' + (tab === t[0] ? 'on' : '') + '">' + t[1] + (t[0] === 'letters' && unread ? '<span class="dot"></span>' : '') + '</button>';
     });
-    html += '</nav><main>' + (PAGES[tab] || PAGES.diary)() + '</main></div>';
+    html += '</nav><div class="hint">' + esc(TAB_HINTS[tab] || TAB_HINTS.diary) + '</div><main>' + (PAGES[tab] || PAGES.diary)() + '</main></div>';
     app.innerHTML = html;
     wire();
   }
@@ -594,6 +646,7 @@
       });
     }
     else if (a === 'maison') { post('core', 'maison').then(function () { toast('Counting your pieces…'); setTimeout(load, 6000); }); }
+    else if (a === 'guide') { showGuide(); }
     else if (a === 'wishdel') { post('diary', 'wishdel|' + id).then(function () { setTimeout(load, 300); }); }
   }
 
