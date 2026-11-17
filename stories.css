@@ -1,0 +1,94 @@
+/* Vignette by Thryft · Vignette Stories
+   Uses journal.css's palette and fonts, so covers and seasons carry over. */
+
+
+/* ---------- the Stories book, laid over the journal ---------- */
+#vg-stories { display: none; }
+.fl-book {
+  position: fixed; inset: 14px; z-index: 40;
+  background: var(--perle); border: 1px solid var(--laiton-soft);
+  display: flex; flex-direction: column;
+}
+.fl-book::after {
+  content: ''; position: absolute; inset: 6px;
+  border: 1px solid rgba(168, 139, 92, 0.35); pointer-events: none;
+}
+.fl-top { display: flex; align-items: center; gap: 18px; padding: 20px 34px 12px; position: relative; z-index: 1; border-bottom: 1px solid rgba(168, 139, 92, 0.3); }
+.fl-top .titles { flex: 1; }
+.fl-top h1 { font-family: var(--serif); font-weight: 400; font-size: 30px; line-height: 1.1; }
+.fl-top h1 em { font-family: var(--script); font-style: normal; color: var(--laiton); font-size: 30px; margin-left: 14px; }
+.fl-close { margin-left: 6px; }
+
+.fl-ink { font-family: var(--sans); font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--encre-soft); display: flex; align-items: center; gap: 8px; }
+.fl-ink.dry { color: var(--laiton); }
+.fl-well { width: 14px; height: 16px; border-radius: 3px 3px 6px 6px; background: var(--encre); box-shadow: inset 0 -6px 0 var(--trianon); display: inline-block; }
+.fl-ink.dry .fl-well { background: var(--pierre); box-shadow: none; }
+
+.fl-notice { margin: 10px 34px 0; padding: 10px 16px; background: var(--poudre); border-left: 2px solid var(--laiton-soft); font-size: 15px; position: relative; z-index: 1; }
+
+.fl-main { flex: 1; overflow: hidden; display: flex; flex-direction: column; padding: 16px 34px 24px; position: relative; z-index: 1; min-height: 0; }
+
+/* ---------- shelf ---------- */
+.fl-intro { font-style: italic; color: var(--encre-soft); margin-bottom: 18px; }
+.fl-shelf { overflow-y: auto; flex: 1; display: grid; gap: 16px; align-content: start; padding-right: 6px; }
+.fl-volume { display: flex; gap: 20px; background: #fff; border: 1px solid var(--pierre); padding: 16px; }
+.fl-volume.locked { opacity: 0.62; }
+.fl-spine { width: 54px; min-height: 150px; flex: none; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(116, 95, 60, 0.4); box-shadow: inset 0 10px 0 rgba(255,255,255,0.12), inset 0 -10px 0 rgba(0,0,0,0.06); }
+.fl-spine span { writing-mode: vertical-rl; transform: rotate(180deg); font-family: var(--serif); font-size: 15px; letter-spacing: 0.04em; }
+.c-navy { background: #3E4A61; color: #EDE6DA; }
+.c-rose { background: #E4CCC8; color: var(--encre); }
+.c-lilac { background: var(--lavande); color: var(--encre); }
+.c-cream { background: var(--creme); color: var(--encre); }
+.c-trianon { background: var(--trianon); color: var(--encre); }
+.fl-about { flex: 1; }
+.fl-about h3 { font-family: var(--serif); font-weight: 400; font-size: 24px; line-height: 1.15; }
+.fl-en { font-family: var(--script); font-size: 22px; color: var(--laiton); margin: 2px 0 8px; }
+.fl-about p { font-size: 16px; margin-bottom: 10px; }
+.fl-status { font-family: var(--sans); font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--encre-soft); margin-bottom: 12px; }
+.fl-foot { font-size: 14px; color: var(--encre-soft); margin-top: 14px; font-style: italic; }
+
+/* ---------- a story ---------- */
+.fl-bookhead { display: flex; align-items: center; gap: 16px; margin-bottom: 10px; }
+.fl-booktitle { flex: 1; text-align: center; }
+.fl-booktitle h2 { font-family: var(--serif); font-weight: 400; font-size: 24px; line-height: 1.1; }
+.fl-booktitle span { font-family: var(--script); color: var(--laiton); font-size: 20px; }
+.fl-tools { display: flex; gap: 14px; }
+
+.fl-recap { background: var(--poudre); padding: 12px 18px; margin-bottom: 10px; font-size: 15px; }
+.fl-recap p { margin-top: 4px; font-style: italic; }
+
+.fl-pages { flex: 1; overflow-y: auto; padding: 4px 22px 18px 4px; min-height: 0; scroll-behavior: smooth; }
+.fl-chapter { text-align: center; font-family: var(--sans); font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--laiton); margin: 18px 0 16px; }
+.fl-chapter i { font-family: var(--serif); text-transform: none; letter-spacing: 0; font-size: 14px; color: var(--encre-soft); }
+.fl-orn { margin: 0 8px; }
+.fl-text p { font-size: 17.5px; line-height: 1.62; margin-bottom: 12px; text-indent: 1.4em; }
+.fl-text p:first-child { text-indent: 0; }
+.fl-you { font-family: var(--script); font-size: 26px; line-height: 1.15; color: var(--laiton); margin: 18px 0 10px 1.4em; }
+.fl-wait { font-family: var(--script); font-size: 26px; color: var(--laiton-soft); margin: 6px 0 14px 1.4em; display: flex; align-items: center; gap: 12px; }
+.fl-quill { width: 22px; height: 2px; background: var(--laiton-soft); display: inline-block; animation: fl-scratch 1.1s ease-in-out infinite; transform-origin: left center; }
+@keyframes fl-scratch { 0%, 100% { transform: scaleX(0.2); opacity: 0.5; } 50% { transform: scaleX(1); opacity: 1; } }
+
+.fl-chapdone { border: 1px solid var(--laiton-soft); background: #fff; padding: 14px 18px; margin: 12px 0 18px; text-align: center; }
+.fl-chapdone p { font-family: var(--script); font-size: 25px; line-height: 1.2; color: var(--laiton); margin-top: 6px; }
+
+.fl-fin { text-align: center; padding: 18px 0 8px; }
+.fl-fin-word { font-family: var(--script); font-size: 64px; color: var(--laiton); line-height: 1; margin-bottom: 12px; }
+.fl-fin p { font-size: 16px; margin: 6px auto; max-width: 620px; }
+.fl-fin .btn { margin-top: 16px; }
+
+/* ---------- writing ---------- */
+.fl-write { border-top: 1px solid rgba(168, 139, 92, 0.3); padding-top: 12px; }
+.fl-sugg { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+.fl-chip { font-family: var(--serif); font-style: italic; font-size: 14.5px; background: transparent; color: var(--encre); border: 1px solid var(--pierre); border-radius: 999px; padding: 4px 14px; cursor: pointer; }
+.fl-chip:hover { border-color: var(--laiton-soft); background: #fff; }
+.fl-row { display: flex; gap: 12px; align-items: stretch; }
+.fl-row textarea.field { flex: 1; min-height: 64px; height: 64px; }
+.fl-row .btn { align-self: stretch; }
+.fl-row .btn[disabled], .fl-row textarea[disabled] { opacity: 0.55; }
+.fl-dry { font-style: italic; color: var(--laiton); text-align: center; padding: 8px 0; }
+
+/* ---------- confirm ---------- */
+.fl-veil { position: fixed; inset: 0; z-index: 60; background: rgba(52, 51, 61, 0.28); display: grid; place-items: center; }
+.fl-ask { background: var(--perle); border: 1px solid var(--laiton-soft); padding: 24px 28px; max-width: 520px; text-align: center; }
+.fl-ask p { margin-bottom: 16px; }
+.fl-ask .fl-row { justify-content: center; }
