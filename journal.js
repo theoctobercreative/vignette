@@ -863,7 +863,7 @@
       lightbox(cardHtml(ci, false, 'big') + '<h3>' + esc(cd[0]) + '</h3><p><b>Upright:</b> ' + esc(cd[1]) + '.</p><p><b>Reversed:</b> ' + esc(TAROT_REV[ci].charAt(0).toUpperCase() + TAROT_REV[ci].slice(1)) + '.</p>');
     }
     else if (a === 'star') {
-      modal('Star this place', 'Wherever you’re standing right now. Add a little note if you like.', [{ key: 'note', ph: 'A note, like “Gynni’s house” (optional)', max: 80 }], 'Star it', function (vals) {
+      modal('Star this place', 'Wherever you’re standing right now. Add a little note if you like.', [{ key: 'note', ph: 'A note, like “my sister’s house” (optional)', max: 80 }], 'Star it', function (vals) {
         post('core', 'star|' + bar(vals.note || '')).then(function () { toast('Starred.'); setTimeout(load, 500); });
       });
     }
