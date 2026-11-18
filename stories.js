@@ -1,4 +1,4 @@
-/* Vignette by Thryft · Vignette Stories
+/* Vignette by Thryft · Vignette Stories (v2: Aunt Odile's letters live on the shelf; story errands)
    Serial stories in the journal. Loads after journal.js, which shows a
    Stories tab when this file is here; the tab opens the shelf over the journal.
    Talks to the HUD Stories script (who's reading, where, what they touched)
@@ -17,7 +17,13 @@
     eyebrow: 'Vignette · Stories',
     title: 'Vignette Stories',
     sub: 'stories in installments',
-    shelfIntro: 'Choose a story. Each turn, write what you do, and the next installment arrives in your journal.',
+    shelfIntro: 'Aunt Odile’s letters arrive as you live. The other stories you play a turn at a time: write what you do, and the next installment arrives in your journal.',
+    odileTitle: 'Letters from Aunt Odile',
+    odileBlurb: 'Your aunt left you her things, and her letters keep arriving. They’re free, and they come as you live: a little pampering, something made by hand, a visit.',
+    odileOpen: 'Read her letters',
+    errandAsk: 'The story asks',
+    errandHow: 'Whenever you’re ready, take your next turn there. The story will notice.',
+    errandDone: 'You did what the story asked',
     inkNote: 'Every installment uses one drop of ink. Pots of Story Ink from Thryft refill your inkwell.',
     locked: 'Comes in its own story book, at Thryft',
     begin: 'Begin', cont: 'Continue', again: 'Read it again',
@@ -44,6 +50,7 @@
   var ctx = {}, near = [], pendingProps = [];
   var ink = null, shelf = null, book = null;
   var view = 'shelf', busy = false, showRecap = false, notice = '';
+  var ODILE = window.VignetteOdile || null;   // the journal's Aunt Odile letters, when it shares them
   var root = null;
 
   // ============================================================
@@ -135,7 +142,7 @@
       if (h.ctx) ctx = h.ctx;
       var props = pendingProps.concat(h.props || []).slice(-3);
       pendingProps = [];
-      return desk('/turn', { story: book.story.id, action: action, ctx: { region: ctx.region, parcel: ctx.parcel, slt: ctx.slt, near: near }, props: props });
+      return desk('/turn', { story: book.story.id, action: action, ctx: { region: ctx.region, parcel: ctx.parcel, slt: ctx.slt, kind: ctx.kind || '', people: ctx.people || [], near: near }, props: props });
     }).then(function (r) {
       busy = false;
       var last = book.log[book.log.length - 1];
@@ -153,10 +160,14 @@
           book.lines.push(ev.line);
           last.chapterDone = { n: ev.n, title: ev.title, english: ev.english, line: ev.line };
           hudPost(['chap', book.story.id, ev.n, 'chap', bar(ev.line), ev.receipt, 0].join('|'));
+        } else if (ev.kind === 'errand') {
+          if (ev.done) { last.errandDone = ev.ask; hudPost(['errand', book.story.id, '-', '-'].join('|')); }
+          else hudPost(['errand', book.story.id, bar(ev.need), bar(ev.ask)].join('|'));
         } else if (ev.kind === 'done') {
           hudPost(['chap', book.story.id, ev.n, 'done', bar(ev.title), ev.receipt, ev.trouvaille].join('|'));
         }
       });
+      book.errand = r.errand || null;
       book.chapter = r.chapter; book.chapterTitle = r.chapterTitle; book.chapterEnglish = r.chapterEnglish;
       book.done = !!r.done;
       render(true);
@@ -188,6 +199,12 @@
     var out = '<p class="fl-intro">' + esc(W.shelfIntro) + '</p>';
     if (!shelf) return out + '<p class="fl-wait">' + esc(W.drying) + '</p>';
     out += '<div class="fl-shelf">';
+    if (ODILE) {
+      var o = ODILE.status();
+      out += '<div class="fl-volume odile"><div class="fl-spine c-lilac"><span>Aunt Odile</span></div>'
+        + '<div class="fl-about"><h3>' + esc(W.odileTitle) + '</h3><p>' + esc(W.odileBlurb) + '</p><div class="fl-status">' + esc(o) + '</div>'
+        + '<button class="btn" data-odile>' + esc(W.odileOpen) + '</button></div></div>';
+    }
     shelf.forEach(function (s) {
       var status = !s.owned ? W.locked : (s.done ? 'Finished · ' + s.chapters + ' chapters' : (s.started ? 'Chapter ' + (ROMAN[s.chapter - 1] || s.chapter) + ' of ' + s.chapters : s.chapters + ' chapters'));
       var btn = !s.owned ? '' : '<button class="btn" data-open="' + esc(s.id) + '">' + esc(s.done ? W.again : (s.started ? W.cont : W.begin)) + '</button>';
@@ -203,6 +220,12 @@
     return '<div class="fl-chapter"><span class="fl-orn">✦</span> Chapter ' + (ROMAN[i] || (i + 1)) + ' · ' + esc(c.title) + (c.english && c.english !== c.title ? ' <i>(' + esc(c.english) + ')</i>' : '') + ' <span class="fl-orn">✦</span></div>';
   }
 
+  function odileHtml() {
+    return '<div class="fl-bookhead"><button class="link" data-shelf>‹ ' + esc(W.back) + '</button>'
+      + '<div class="fl-booktitle"><h2>' + esc(W.odileTitle) + '</h2><span>her letters, one chapter at a time</span></div><div class="fl-tools"></div></div>'
+      + '<div class="fl-pages odile-pages" id="fl-pages">' + ODILE.html() + '</div>';
+  }
+
   function bookHtml() {
     var out = '<div class="fl-bookhead"><button class="link" data-shelf>‹ ' + esc(W.back) + '</button>'
       + '<div class="fl-booktitle"><h2>' + esc(book.story.title) + '</h2>' + (book.story.english && book.story.english !== book.story.title ? '<span>' + esc(book.story.english) + '</span>' : '') + '</div>'
@@ -214,6 +237,7 @@
     book.log.forEach(function (e) {
       if (e.c !== lastC) { out += chapterHead(e.c); lastC = e.c; }
       if (e.a) out += '<div class="fl-you">' + esc(e.a) + '</div>';
+      if (e.errandDone) out += '<div class="fl-errand done"><span class="fl-orn">✦</span> ' + esc(W.errandDone) + ': <i>' + esc(e.errandDone) + '</i></div>';
       if (e.pending) out += '<div class="fl-wait"><span class="fl-quill"></span>' + esc(W.drying) + '</div>';
       else out += '<div class="fl-text">' + paras(e.n) + '</div>';
       if (e.chapterDone) out += '<div class="fl-chapdone"><div class="label">Chapter ' + (ROMAN[e.chapterDone.n - 1] || e.chapterDone.n) + ' · ' + esc(W.chapterDone) + '</div><p>' + esc(e.chapterDone.line) + '</p></div>';
@@ -223,6 +247,7 @@
         + (book.lines || []).map(function (l, i) { return '<p><b>' + (ROMAN[i] || (i + 1)) + '.</b> ' + esc(l) + '</p>'; }).join('')
         + '<button class="btn" data-shelf>' + esc(W.back) + '</button></div>';
     }
+    if (book.errand && !book.done && !busy) out += '<div class="fl-errand"><div class="label">' + esc(W.errandAsk) + '</div><p>' + esc(book.errand.ask) + '</p><span>' + esc(W.errandHow) + '</span></div>';
     out += '</div>';
 
     if (!book.done) {
@@ -245,7 +270,7 @@
       + '<h1>' + esc(W.title) + '<em>' + esc(W.sub) + '</em></h1></div>' + inkHtml()
       + '<button class="link fl-close" data-close>' + esc(W.close) + '</button></header>'
       + (notice ? '<div class="fl-notice">' + esc(notice) + '</div>' : '')
-      + '<main class="fl-main">' + (view === 'book' && book ? bookHtml() : shelfHtml()) + '</main></div>';
+      + '<main class="fl-main">' + (view === 'odile' && ODILE ? odileHtml() : (view === 'book' && book ? bookHtml() : shelfHtml())) + '</main></div>';
     var keep = document.getElementById('fl-input');
     var draft = keep ? keep.value : '';
     root.innerHTML = html;
@@ -259,6 +284,7 @@
     var q = function (sel) { return Array.prototype.slice.call(root.querySelectorAll(sel)); };
     q('[data-close]').forEach(function (b) { b.onclick = hide; });
     q('[data-shelf]').forEach(function (b) { b.onclick = openShelf; });
+    q('[data-odile]').forEach(function (b) { b.onclick = function () { view = 'odile'; notice = ''; render(); }; });
     q('[data-open]').forEach(function (b) { b.onclick = function () { openBook(b.getAttribute('data-open')); }; });
     q('[data-recap]').forEach(function (b) { b.onclick = function () { showRecap = !showRecap; render(); }; });
     q('[data-restart]').forEach(function (b) { b.onclick = restart; });
@@ -273,10 +299,12 @@
   // ============================================================
   //  OPEN / CLOSE
   // ============================================================
-  function show() {
+  function show(what) {
     if (!root) { root = document.createElement('div'); root.id = 'vg-stories'; document.body.appendChild(root); }
     root.style.display = 'block';
     document.body.classList.add('fl-on');
+    ODILE = window.VignetteOdile || ODILE;
+    if (what === 'odile' && ODILE) { view = 'odile'; render(); if (!shelf) desk('/shelf').then(function (r) { if (r && r.ok) shelf = r.shelf; }).catch(function () {}); return; }
     if (view === 'book' && book) render(true); else openShelf();
   }
   function hide() {

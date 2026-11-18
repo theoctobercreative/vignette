@@ -92,3 +92,12 @@
 .fl-ask { background: var(--perle); border: 1px solid var(--laiton-soft); padding: 24px 28px; max-width: 520px; text-align: center; }
 .fl-ask p { margin-bottom: 16px; }
 .fl-ask .fl-row { justify-content: center; }
+
+/* v2: Aunt Odile on the shelf, story errands */
+.fl-volume.odile { border-color: rgba(116, 95, 60, 0.45); background: linear-gradient(180deg, rgba(222, 214, 232, 0.35), rgba(255,255,255,0.6)); }
+.odile-pages .chapter { margin-bottom: 18px; }
+.fl-errand { margin: 14px 0 6px; padding: 12px 16px; border: 1px solid rgba(160, 128, 70, 0.55); background: rgba(240, 231, 226, 0.6); text-align: center; }
+.fl-errand .label { font-family: var(--sans); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--laiton); }
+.fl-errand p { font-family: var(--script); font-size: 24px; color: var(--encre); margin: 4px 0; }
+.fl-errand span { font-family: var(--serif); font-style: italic; font-size: 13px; color: var(--encre-soft); }
+.fl-errand.done { margin: 6px 0 10px; padding: 6px 12px; text-align: left; font-family: var(--serif); font-size: 14px; color: var(--laiton); background: none; border: none; border-left: 2px solid var(--laiton); }

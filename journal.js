@@ -50,7 +50,7 @@
   // k: piece (rituals), hobby (a hobby kit), supply (used up into a finished piece), luxury (runs out or fades, no refill),
   //    refillable (runs out, takes a refill), refill, finished (made by a supply; not sold in the shop)
   // r: rituals it lifts · h: hobby it grows · fit: for a refill, the piece it tops up; for a refillable, its refill
-  var CATALOG = [{"n":"Apothecary Shelf","k":"piece","p":129,"img":"apothecary-shelf-a","id":28851852,"r":"P,I","h":"","fit":"","line":"blend something lavender"},{"n":"Bedside Tray","k":"piece","p":129,"img":"bedside-tray-a","id":28851853,"r":"R","h":"","fit":"","line":"turn in for the night"},{"n":"Candlemaking Tray","k":"hobby","p":129,"img":"candlemaking-tray-b","id":28851874,"r":"I","h":"candle","fit":"","line":"pour a candle"},{"n":"Cleaning Caddy","k":"piece","p":129,"img":"cleaning-caddy","id":28851875,"r":"T","h":"","fit":"","line":"tidy up"},{"n":"Knitting Basket","k":"hobby","p":129,"img":"knitting-basket","id":28851892,"r":"I","h":"knit","fit":"","line":"knit a few rows"},{"n":"Sewing Basket","k":"hobby","p":129,"img":"sewing-basket-a","id":28851922,"r":"I","h":"sew","fit":"","line":"stitch a little"},{"n":"Vanity Tray","k":"piece","p":129,"img":"vanity-tray-b","id":28851935,"r":"P","h":"","fit":"","line":"powder and perfume"},{"n":"Calling Card Tray","k":"piece","p":79,"img":"calling-card-tray","id":28851862,"r":"S","h":"","fit":"","line":"leave a calling card"},{"n":"Dance Card","k":"piece","p":79,"img":"dance-card","id":28851876,"r":"S","h":"","fit":"","line":"a turn on the dance floor"},{"n":"Flower Press Kit","k":"hobby","p":79,"img":"flower-press-kit-c","id":28851884,"r":"I","h":"press","fit":"","line":"press a flower"},{"n":"Journal and Pen","k":"hobby","p":79,"img":"journal-and-pen-c","id":28851891,"r":"I,R","h":"journal","fit":"","line":"write a page"},{"n":"Letter Writing Set","k":"hobby","p":79,"img":"letter-writing-set-b","id":28851899,"r":"S","h":"letter","fit":"","line":"write a letter"},{"n":"Porcelain Painting Set","k":"hobby","p":79,"img":"porcelain-painting-set","id":28851908,"r":"I","h":"paint","fit":"","line":"paint a little porcelain"},{"n":"Sweater Stack","k":"piece","p":79,"img":"sweater-stack","id":28851926,"r":"T","h":"","fit":"","line":"fold the sweaters"},{"n":"Tarot Spread","k":"hobby","p":79,"img":"tarot-spread","id":28851930,"r":"I","h":"tarot","fit":"","line":"draw a card"},{"n":"Autumn Perfume Bottle","k":"luxury","p":59,"img":"perfume-bottle-autumn","id":28851904,"r":"P","h":"","fit":"","line":"iris and old paper"},{"n":"Spring Perfume Bottle","k":"luxury","p":59,"img":"perfume-bottle-spring","id":28851905,"r":"P","h":"","fit":"","line":"lilac and spring rain"},{"n":"Summer Perfume Bottle","k":"luxury","p":59,"img":"perfume-bottle-summer","id":28851906,"r":"P","h":"","fit":"","line":"peony and warm linen"},{"n":"Winter Perfume Bottle","k":"luxury","p":59,"img":"perfume-bottle-winter","id":28851907,"r":"P","h":"","fit":"","line":"powder and cold air"},{"n":"Powder Jar","k":"luxury","p":59,"img":"powder-jar","id":28851910,"r":"P","h":"","fit":"","line":"a soft puff of powder"},{"n":"Peony Bouquet","k":"luxury","p":59,"img":"peony-bouquet","id":28851902,"r":"P,I","h":"","fit":"","line":"heavy-headed peonies"},{"n":"Taper Candle Holder","k":"refillable","p":59,"img":"taper-candle-holder","id":28851928,"r":"R,I","h":"","fit":"Taper Candles","line":"let the room go soft"},{"n":"Votive Holder","k":"refillable","p":59,"img":"votive-holder","id":28851939,"r":"R,P","h":"","fit":"Votive Candles","line":"a little starlight"},{"n":"Incense Burner","k":"refillable","p":59,"img":"incense-burner","id":28851887,"r":"I","h":"","fit":"Incense Cones","line":"ask Tante Odile"},{"n":"Stationery Box","k":"refillable","p":59,"img":"stationery-box","id":28851925,"r":"S","h":"letter","fit":"Stationery Paper","line":"a fresh sheet of paper"},{"n":"Wax Seal Stamp","k":"refillable","p":59,"img":"wax-seal-stamp","id":28851940,"r":"S","h":"letter","fit":"Cream Sealing Wax","line":"seal it with a kiss"},{"n":"Instant Camera","k":"refillable","p":59,"img":"instant-camera","id":28851890,"r":"I","h":"","fit":"Instant Film","line":"snap a photo"},{"n":"Blotting Paper Pack","k":"supply","p":59,"img":"blotting-paper-pack","id":28851855,"r":"I","h":"press","fit":"","line":"press some pansies"},{"n":"Candle Wax Blocks","k":"supply","p":59,"img":"candle-wax-blocks","id":28851870,"r":"I","h":"candle","fit":"","line":"chop the wax and melt"},{"n":"Embroidery Floss Tin","k":"supply","p":59,"img":"embroidery-floss-tin","id":28851877,"r":"I","h":"sew","fit":"","line":"thread the first color"},{"n":"Paint Pot Set","k":"supply","p":59,"img":"paint-pot-set","id":28851901,"r":"I","h":"paint","fit":"","line":"a little porcelain to paint"},{"n":"Yarn Skein Bundle","k":"supply","p":59,"img":"yarn-skein-bundle","id":28851851,"r":"I","h":"knit","fit":"","line":"cast on something soft"},{"n":"Embroidered Hoop","k":"finished","p":79,"img":"embroidery-hoop-finished","id":28851879,"r":"I","h":"sew","fit":"","line":"proud of that one"},{"n":"Pressed Flower Frame","k":"finished","p":79,"img":"pressed-flower-frame","id":28851911,"r":"P","h":"press","fit":"","line":"pansies caught in brass"},{"n":"Poured Candle Tin","k":"finished","p":79,"img":"poured-candle-tin","id":28851909,"r":"R","h":"candle","fit":"","line":"smooth as cream"},{"n":"Stationery Paper","k":"refill","p":39,"img":"letter-paper-cream","id":28851896,"r":"","h":"","fit":"Stationery Box","line":"twelve cream sheets"},{"n":"Cream Sealing Wax","k":"refill","p":39,"img":"sealing-wax-ivory","id":28851919,"r":"","h":"","fit":"Wax Seal Stamp","line":"fifteen cream seals"},{"n":"Taper Candles","k":"refill","p":39,"img":"taper-candles","id":28851929,"r":"","h":"","fit":"Taper Candle Holder","line":"four fresh tapers"},{"n":"Votive Candles","k":"refill","p":39,"img":"votive-candles","id":28851938,"r":"","h":"","fit":"Votive Holder","line":"six little votives"},{"n":"Incense Cones","k":"refill","p":39,"img":"incense-cones","id":28851888,"r":"","h":"","fit":"Incense Burner","line":"ten cones for Odile"},{"n":"Instant Film","k":"refill","p":39,"img":"film-box","id":28851880,"r":"","h":"","fit":"Instant Camera","line":"ten fresh shots"}];
+  var CATALOG = [{"n":"Apothecary Shelf","k":"piece","p":129,"img":"apothecary-shelf-a","id":28851852,"r":"P,I","h":"","fit":"","line":"blend something lavender"},{"n":"Bedside Tray","k":"piece","p":129,"img":"bedside-tray-a","id":28851853,"r":"R","h":"","fit":"","line":"turn in for the night"},{"n":"Candlemaking Tray","k":"hobby","p":129,"img":"candlemaking-tray-b","id":28851874,"r":"I","h":"candle","fit":"","line":"pour a candle"},{"n":"Cleaning Caddy","k":"piece","p":129,"img":"cleaning-caddy","id":28851875,"r":"T","h":"","fit":"","line":"tidy up"},{"n":"Knitting Basket","k":"hobby","p":129,"img":"knitting-basket","id":28851892,"r":"I","h":"knit","fit":"","line":"knit a few rows"},{"n":"Sewing Basket","k":"hobby","p":129,"img":"sewing-basket-a","id":28851922,"r":"I","h":"sew","fit":"","line":"stitch a little"},{"n":"Vanity Tray","k":"piece","p":129,"img":"vanity-tray-b","id":28851935,"r":"P","h":"","fit":"","line":"powder and perfume"},{"n":"Calling Card Tray","k":"piece","p":79,"img":"calling-card-tray","id":28851862,"r":"S","h":"","fit":"","line":"leave a calling card"},{"n":"Dance Card","k":"piece","p":79,"img":"dance-card","id":28851876,"r":"S","h":"","fit":"","line":"a turn on the dance floor"},{"n":"Flower Press Kit","k":"hobby","p":79,"img":"flower-press-kit-c","id":28851884,"r":"I","h":"press","fit":"","line":"press a flower"},{"n":"Journal and Pen","k":"hobby","p":79,"img":"journal-and-pen-c","id":28851891,"r":"I,R","h":"journal","fit":"","line":"write a page"},{"n":"Letter Writing Set","k":"hobby","p":79,"img":"letter-writing-set-b","id":28851899,"r":"S","h":"letter","fit":"","line":"write a letter"},{"n":"Porcelain Painting Set","k":"hobby","p":79,"img":"porcelain-painting-set","id":28851908,"r":"I","h":"paint","fit":"","line":"paint a little porcelain"},{"n":"Sweater Stack","k":"piece","p":79,"img":"sweater-stack","id":28851926,"r":"T","h":"","fit":"","line":"fold the sweaters"},{"n":"Tarot Spread","k":"hobby","p":79,"img":"tarot-spread","id":28851930,"r":"I","h":"tarot","fit":"","line":"draw a card"},{"n":"Autumn Perfume Bottle","k":"luxury","p":59,"img":"perfume-bottle-autumn","id":28851904,"r":"P","h":"","fit":"","line":"iris and old paper"},{"n":"Spring Perfume Bottle","k":"luxury","p":59,"img":"perfume-bottle-spring","id":28851905,"r":"P","h":"","fit":"","line":"lilac and spring rain"},{"n":"Summer Perfume Bottle","k":"luxury","p":59,"img":"perfume-bottle-summer","id":28851906,"r":"P","h":"","fit":"","line":"peony and warm linen"},{"n":"Winter Perfume Bottle","k":"luxury","p":59,"img":"perfume-bottle-winter","id":28851907,"r":"P","h":"","fit":"","line":"powder and cold air"},{"n":"Powder Jar","k":"luxury","p":59,"img":"powder-jar","id":28851910,"r":"P","h":"","fit":"","line":"a soft puff of powder"},{"n":"Peony Bouquet","k":"luxury","p":59,"img":"peony-bouquet","id":28851902,"r":"P,I","h":"","fit":"","line":"heavy-headed peonies"},{"n":"Taper Candle Holder","k":"refillable","p":59,"img":"taper-candle-holder","id":28851928,"r":"R,I","h":"","fit":"Taper Candles","line":"let the room go soft"},{"n":"Votive Holder","k":"refillable","p":59,"img":"votive-holder","id":28851939,"r":"R,P","h":"","fit":"Votive Candles","line":"a little starlight"},{"n":"Incense Burner","k":"refillable","p":59,"img":"incense-burner","id":28851887,"r":"I","h":"","fit":"Incense Cones","line":"ask Aunt Odile"},{"n":"Stationery Box","k":"refillable","p":59,"img":"stationery-box","id":28851925,"r":"S","h":"letter","fit":"Stationery Paper","line":"a fresh sheet of paper"},{"n":"Wax Seal Stamp","k":"refillable","p":59,"img":"wax-seal-stamp","id":28851940,"r":"S","h":"letter","fit":"Cream Sealing Wax","line":"seal it with a kiss"},{"n":"Instant Camera","k":"refillable","p":59,"img":"instant-camera","id":28851890,"r":"I","h":"","fit":"Instant Film","line":"snap a photo"},{"n":"Blotting Paper Pack","k":"supply","p":59,"img":"blotting-paper-pack","id":28851855,"r":"I","h":"press","fit":"","line":"press some pansies"},{"n":"Candle Wax Blocks","k":"supply","p":59,"img":"candle-wax-blocks","id":28851870,"r":"I","h":"candle","fit":"","line":"chop the wax and melt"},{"n":"Embroidery Floss Tin","k":"supply","p":59,"img":"embroidery-floss-tin","id":28851877,"r":"I","h":"sew","fit":"","line":"thread the first color"},{"n":"Paint Pot Set","k":"supply","p":59,"img":"paint-pot-set","id":28851901,"r":"I","h":"paint","fit":"","line":"a little porcelain to paint"},{"n":"Yarn Skein Bundle","k":"supply","p":59,"img":"yarn-skein-bundle","id":28851851,"r":"I","h":"knit","fit":"","line":"cast on something soft"},{"n":"Embroidered Hoop","k":"finished","p":79,"img":"embroidery-hoop-finished","id":28851879,"r":"I","h":"sew","fit":"","line":"proud of that one"},{"n":"Pressed Flower Frame","k":"finished","p":79,"img":"pressed-flower-frame","id":28851911,"r":"P","h":"press","fit":"","line":"pansies caught in brass"},{"n":"Poured Candle Tin","k":"finished","p":79,"img":"poured-candle-tin","id":28851909,"r":"R","h":"candle","fit":"","line":"smooth as cream"},{"n":"Stationery Paper","k":"refill","p":39,"img":"letter-paper-cream","id":28851896,"r":"","h":"","fit":"Stationery Box","line":"twelve cream sheets"},{"n":"Cream Sealing Wax","k":"refill","p":39,"img":"sealing-wax-ivory","id":28851919,"r":"","h":"","fit":"Wax Seal Stamp","line":"fifteen cream seals"},{"n":"Taper Candles","k":"refill","p":39,"img":"taper-candles","id":28851929,"r":"","h":"","fit":"Taper Candle Holder","line":"four fresh tapers"},{"n":"Votive Candles","k":"refill","p":39,"img":"votive-candles","id":28851938,"r":"","h":"","fit":"Votive Holder","line":"six little votives"},{"n":"Incense Cones","k":"refill","p":39,"img":"incense-cones","id":28851888,"r":"","h":"","fit":"Incense Burner","line":"ten cones for Odile"},{"n":"Instant Film","k":"refill","p":39,"img":"film-box","id":28851880,"r":"","h":"","fit":"Instant Camera","line":"ten fresh shots"}];
   var KIND_NAMES = { piece: 'Everyday pieces', hobby: 'Hobbies', luxury: 'Little luxuries', refillable: 'Refillables' };
   var SHOP_SLURL = 'Mallo';
 
@@ -434,7 +434,7 @@
     keepsakes: 'Little finds that turn up as you go. Spares can be gifted to friends.',
     letters: 'Letters and calling cards from friends, plus a place to write your own.',
     stamps: 'Your starred places, everywhere you’ve wandered, postcards, events, and your Home Score.',
-    stories: 'Serial stories you play, a chapter at a time.',
+    stories: 'Aunt Odile’s letters, plus stories you play a turn at a time, out in the world.',
     wishlist: 'Shop pieces you pinned by touching a display.',
     histoires: 'Aunt Odile’s story, a letter at a time. New letters unlock as you play.',
     shop: 'Every Vignette-ready piece, refill, and hobby supply. Tap one to open it on the Marketplace.'
@@ -457,7 +457,7 @@
       html += '<div class="g-step"><span class="g-num">' + (i + 1) + '</span><div><b>' + st[0] + '</b><p>' + st[1] + '</p></div></div>';
     });
     html += '</div><div class="g-eyebrow">Where things live</div><div class="g-map">';
-    [['diary', 'Diary'], ['rituals', 'Rituals'], ['hobbies', 'Hobbies'], ['keepsakes', 'Keepsakes'], ['letters', 'Letters'], ['stamps', 'Stamps'], ['wishlist', 'Wishlist'], ['histoires', 'Aunt Odile'], ['shop', 'Shop']].forEach(function (t) {
+    tabList().forEach(function (t) {
       html += '<button class="g-tab" data-goto="' + t[0] + '"><b>' + t[1] + '</b><span>' + TAB_HINTS[t[0]] + '</span></button>';
     });
     html += '</div><p class="g-note">Click the cameo on your screen to open or close this journal. In chat, /8 status shows your rituals, /8 note adds a line to today, and /8 letter name message sends a letter.</p>'
@@ -467,7 +467,7 @@
     veil.querySelector('[data-x]').onclick = function () { veil.remove(); };
     veil.onclick = function (ev) { if (ev.target === veil) veil.remove(); };
     veil.querySelectorAll('[data-goto]').forEach(function (b) {
-      b.onclick = function () { tab = b.getAttribute('data-goto'); veil.remove(); render(); };
+      b.onclick = function () { veil.remove(); if (!goTo(b.getAttribute('data-goto'))) render(); };
     });
   }
 
@@ -480,13 +480,24 @@
     guideShown = true;
   }
 
+  // Aunt Odile's letters live on the Stories shelf when this HUD has Stories; otherwise they keep their own tab
+  function tabList() {
+    var t = [['diary', 'Diary'], ['rituals', 'Rituals'], ['hobbies', 'Hobbies'], ['keepsakes', 'Keepsakes'], ['letters', 'Letters'], ['stamps', 'Places']];
+    t.push(window.VignetteStories ? ['stories', 'Stories'] : ['histoires', 'Aunt Odile']);
+    t.push(['shop', 'Shop']);
+    return t;
+  }
+  function goTo(where) {
+    if ((where === 'histoires' || where === 'stories') && window.VignetteStories) { window.VignetteStories.open(where === 'histoires' ? 'odile' : ''); return true; }
+    tab = where; return false;
+  }
+
   function render() {
     var season = seasonNow();
     document.body.className = season;
     var glowing = core && core.r && core.r.every(function (v) { return v >= 7000; });
     var first = String(V.name || 'My').split(' ')[0];
-    var tabs = [['diary', 'Diary'], ['rituals', 'Rituals'], ['hobbies', 'Hobbies'], ['keepsakes', 'Keepsakes'], ['letters', 'Letters'], ['stamps', 'Places'], ['wishlist', 'Wishlist'], ['histoires', 'Aunt Odile'], ['shop', 'Shop']];
-    if (window.VignetteStories) tabs.splice(8, 0, ['stories', 'Stories']);
+    var tabs = tabList();
     var unread = unreadCount();
     var html = '<div class="book"><header class="top"><div class="cameo">V</div><div class="titles"><div class="eyebrow">Vignette · by Thryft</div><h1>' + esc(first) + '’s journal<em>a life in little scenes</em></h1></div>' + (glowing ? '<div class="glow">Glowing</div>' : '') + '<button class="how" data-act="guide">How it works</button></header><nav class="tabs">';
     tabs.forEach(function (t) {
@@ -631,7 +642,7 @@
   PAGES.letters = function () {
     var out = '<h2 class="page">Letters</h2><div class="sub">sealed with your monogram</div>';
     var oc = core && core.ch ? core.ch[0] * 5 + core.ch[1] : 0;
-    out += '<div class="note-card odile-link"><span class="seal">O</span><div><h4>Letters from Aunt Odile</h4><p>Her letters are kept together in their own tab, so the story reads in order.' + (oc ? ' You have ' + oc + (oc === 1 ? ' letter' : ' letters') + ' from her.' : '') + '</p></div><button class="btn ghost" data-go="histoires">Read them</button></div>';
+    out += '<div class="note-card odile-link"><span class="seal">O</span><div><h4>Letters from Aunt Odile</h4><p>' + (window.VignetteStories ? 'Her letters are kept together on your Stories shelf, so the story reads in order.' : 'Her letters are kept together in their own tab, so the story reads in order.') + (oc ? ' You have ' + oc + (oc === 1 ? ' letter' : ' letters') + ' from her.' : '') + '</p></div><button class="btn ghost" data-go="histoires">Read them</button></div>';
     out += '<div class="compose"><div class="label">Write a sealed letter</div><input class="field" id="to" maxlength="64" placeholder="Their username, like sweetpea.resident"><textarea class="field" id="body" maxlength="500" placeholder="Dear…"></textarea><div class="row" style="justify-content:space-between"><span class="muted small">They’ll find it in their journal, or as an IM if they don’t wear Vignette.</span><button class="btn" data-act="send">Seal and send</button></div></div>';
     var items = mail.map(function (s) { var p = String(s).split('~'); return { id: +p[0], unix: +p[1], type: p[2], from: p[3], fromKey: p[4], payload: p[5], read: p[6] === '1' }; });
     var letters = items.filter(function (m) { return m.type !== 'card'; });
@@ -731,6 +742,17 @@
     return out;
   };
 
+  // the Stories shelf shows Aunt Odile's letters
+  window.VignetteOdile = {
+    html: function () { return PAGES.histoires().replace(/^<h2 class="page">Aunt Odile<\/h2><div class="sub">[^<]*<\/div>/, ''); },
+    status: function () {
+      var c = core && core.ch ? core.ch : [0, 0], have = c[0] * 5 + c[1];
+      if (have >= 15) return 'All 15 letters · finished';
+      var ch = LETTERS[c[0]], hint = ch && ch.hints[c[1]] ? ch.hints[c[1]] : '';
+      return have + ' of 15 letters' + (hint ? ' · next: ' + hint.charAt(0).toLowerCase() + hint.slice(1) : '');
+    }
+  };
+
   var shopKind = 'piece';
   function shopItem(c, note) {
     var tags = [];
@@ -794,7 +816,7 @@
       };
     });
     app.querySelectorAll('[data-go]').forEach(function (b) {
-      b.onclick = function () { tab = b.getAttribute('data-go'); render(); };
+      b.onclick = function () { if (!goTo(b.getAttribute('data-go'))) render(); };
     });
     app.querySelectorAll('[data-act]').forEach(function (el) {
       el.onclick = function (ev) { ev.stopPropagation(); act(el.getAttribute('data-act'), el); };
